@@ -14,5 +14,5 @@ jobs:
         with:
           type: now
           from_branch: main
-          target_branch: test/1
+          target_branch: test/*
           github_token: ${{ github.token }}
