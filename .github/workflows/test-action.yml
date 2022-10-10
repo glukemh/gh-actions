@@ -16,6 +16,11 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 16
+
+      - name: Set up action
+        run: |
+          cd .github/actions/test-action
+          npm ci
       - name: Merge Branch
         uses: ./.github/actions/test-action
         with:
