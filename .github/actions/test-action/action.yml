@@ -1,0 +1,7 @@
+name: "Merge to target branches"
+
+description: "Merges source branch to target branches specified by pattern"
+
+runs:
+  using: "node18"
+  main: "main.js"
