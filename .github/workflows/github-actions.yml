@@ -1,18 +1,23 @@
-name: Sync multiple branches
+name: Sync
 on:
   push:
     branches:
-      - 'main'
-jobs:
-  sync-branch:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@master
+      - main
 
-      - name: Merge main -> test/1
-        uses: devmasx/merge-branch@master
+jobs:
+  sync-branches:
+    runs-on: ubuntu-20.04
+    name: Syncing branches
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Set up Node
+        uses: actions/setup-node@v1
         with:
-          type: now
-          from_branch: main
-          target_branch: test/*
-          github_token: ${{ github.token }}
+          node-version: 12
+      - name: Sync Branches PR
+        uses: monoku/sync-branches-pr@0.0.1
+        with:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          SOURCE_BRANCH: "main"
+          TARGET_BRANCH_STARTS_WITH: "test/"
