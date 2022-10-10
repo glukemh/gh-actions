@@ -2,6 +2,17 @@ name: "Merge to target branches"
 
 description: "Merges source branch to target branches specified by pattern"
 
+inputs:
+  GITHUB_TOKEN:
+    description: "GitHub token"
+    required: true
+  SOURCE_BRANCH:
+    description: "Source branch"
+    required: true
+  TARGET_BRANCH_PATTERN:
+    description: "Target branch pattern"
+    required: true
+
 runs:
   using: "node16"
   main: "main.js"
