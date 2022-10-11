@@ -13,9 +13,11 @@ async function run() {
 			context: {
 				payload: { repository },
 			},
+			GitHub,
 		} = github;
 
-		const octokit = github.getOctokit(token);
+		const octokit = new GitHub(token);
+		console.log("octokit", octokit);
 	} catch (error) {
 		core.setFailed(error.message);
 	}
