@@ -7,10 +7,10 @@ inputs:
     description: "GitHub token"
     required: true
   SOURCE_BRANCH:
-    description: "Source branch"
+    description: "Merge source branch to target branches"
     required: true
-  TARGET_BRANCH_PATTERN:
-    description: "Target branch pattern"
+  TARGET_BRANCH_STARTS_WITH:
+    description: "Merge to branches that start with this pattern"
     required: true
 
 runs:
