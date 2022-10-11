@@ -1,4 +1,4 @@
-name: Testing custom node action
+name: Sync test branches
 
 on:
   push:
@@ -16,12 +16,11 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 16
-
-      - name: Set up action
+      - name: Install action dependencies
         run: |
           cd .github/actions/test-action
           npm ci
-      - name: Merge Branch
+      - name: Merge to test branches
         uses: ./.github/actions/test-action
         with:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
