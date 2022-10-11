@@ -34,16 +34,18 @@ async function run() {
 			console.log(`Merging to ${targets.length} branches`);
 		}
 
-		targets.forEach(async ({ ref }) => {
-			const targetBranch = ref.replace(/^refs\/heads\//, "");
-			await octokit.repos.merge({
-				owner: login,
-				repo: repoName,
-				base: targetBranch,
-				head: source,
-			});
-			console.log("Merged to", targetBranch);
-		});
+		await Promise.all(
+			targets.map(async ({ ref }) => {
+				const targetBranch = ref.replace(/^refs\/heads\//, "");
+				console.log("Merging to", targetBranch);
+				return await octokit.repos.merge({
+					owner: login,
+					repo: repoName,
+					base: targetBranch,
+					head: source,
+				});
+			})
+		);
 
 		console.log("Done");
 	} catch (error) {
