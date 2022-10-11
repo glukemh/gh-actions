@@ -6,9 +6,6 @@ async function run() {
 		const source = core.getInput("SOURCE_BRANCH");
 		const pattern = `heads/${core.getInput("TARGET_BRANCH_STARTS_WITH")}`;
 		const token = core.getInput("GITHUB_TOKEN");
-		console.log("github", github);
-		console.log("source", source);
-		console.log("pattern", pattern);
 		const {
 			context: {
 				sha,
@@ -32,14 +29,13 @@ async function run() {
 
 		targets.forEach(async ({ ref }) => {
 			const targetBranch = ref.replace(/^refs\/heads\//, "");
-			console.log("targetBranch", targetBranch);
-			console.log("sha", sha);
-			// await octokit.repos.merge({
-			//   owner: login,
-			//   repo: repoName,
-			//   base: targetBranch,
-			//   head: source,
-			// });
+			const res = await octokit.repos.merge({
+				owner: login,
+				repo: repoName,
+				base: targetBranch,
+				head: source,
+			});
+			console.log("res", res);
 		});
 	} catch (error) {
 		core.setFailed(error.message);
