@@ -3,7 +3,6 @@ import github from "@actions/github";
 
 async function run() {
 	try {
-		console.log("Running merge-to-many-action");
 		const source = core.getInput("SOURCE_BRANCH");
 		const pattern = `heads/${core.getInput("TARGET_BRANCH_STARTS_WITH")}`;
 		const token = core.getInput("GITHUB_TOKEN");
