@@ -26,4 +26,4 @@ jobs:
         with:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
           SOURCE_BRANCH: "main"
-          TARGET_BRANCH_PATTERN: "test/"
+          TARGET_BRANCH_STARTS_WITH: "test/"
