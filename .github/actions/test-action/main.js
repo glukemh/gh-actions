@@ -36,13 +36,13 @@ async function run() {
 		await Promise.all(
 			targets.map(async ({ ref }) => {
 				const targetBranch = ref.replace(/^refs\/heads\//, "");
-				console.log("Merging to", targetBranch);
-				return await octokit.repos.merge({
+				await octokit.repos.merge({
 					owner: login,
 					repo: repoName,
 					base: targetBranch,
 					head: source,
 				});
+				console.log("Successfully merged", targetBranch);
 			})
 		);
 
